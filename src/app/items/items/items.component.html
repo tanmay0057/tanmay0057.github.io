@@ -44,7 +44,7 @@
           type="submit"
           [disabled]="!postForm.valid"
         >
-          Upload!
+          Add item
         </button>
       </form>
     </div>
@@ -57,8 +57,8 @@
       <ul class="list-group" *ngIf = "loadedPosts.length >= 1 && !isFetching">
           <a [routerLink] = "['info']" class="list-group-item clearfix" *ngFor = "let post of loadedPosts" style="cursor: pointer;" (click)="onClickItem(post)">
               <div class="pull-left">
-                  <h3 class="list-group-item-heading" style="max-width: 200px;">{{ post.name }}</h3><br>
-                  <h4 class="list-group-item-text" >{{ post.description }}</h4>
+                  <h3 class="list-group-item-heading" style="max-width: 200px;">{{ post.name }}</h3><hr>
+                  <h4 class="list-group-item-text" style="max-width: 200px; font-family: 'Times New Roman', Times, serif;">{{ post.description }}</h4>
               </div>
 
               <span class="pull-right">

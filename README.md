@@ -1,27 +1,32 @@
 # ShopBridge
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 10.2.0.
+This project is deployed on github and github pages. The links are:-
+Github pages link: https://tanmay0057.github.io/tanmay0057.github.io/
+Github repository link: https://github.com/tanmay0057/tanmay0057.github.io
 
-## Development server
+## Details
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+This application is build in Angular. For frontend design Bootstrap CSS is used.
+For backend REST API is used. The application send's request to the API server, takes the data entered by the user and converts it into JSON object(This conversion to JSON object is handled by Angular) which is then stored in the server. For response, when fetching the data the JSON object is converted into an array(The JSON object conversion to an array is done in posts.service.ts file by the function fetchPosts() which uses Http Get method) which can then be used application-wide.  
+In the whole application, for navigation control, Routers are used which is a feature by Angular.
 
-## Code scaffolding
+## Editor and Backend used
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+IDE - Visual studio Code
+Backend - Firebase setup
+          The link to firebase Rest API call - https://shop-bridge-a260a.firebaseio.com/posts.json
 
-## Build
+## Commands used
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `--prod` flag for a production build.
-
-## Running unit tests
-
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
-
-## Running end-to-end tests
-
-Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
-
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+1) In local development mode - 
+   For generating components Angular CLI is used - `ng g c [component-name]`
+   For loading app in `localhost:4200` - `ng serve`
+2) For deployment to github in production mode -
+   `git init`
+   `git add .`
+   `git commit -m "test"`
+   `git remote add origin https://github.com/tanmay0057/tanmay0057.github.io.git`
+   `git push -u origin master`
+   `npm i -g angular-cli-ghpages --save`
+   `ng build --prod --base-href "https://tanmay0057.github.io/tanmay0057.github.io/"`
+   `ngh --dir=dist/ShopBridge`
