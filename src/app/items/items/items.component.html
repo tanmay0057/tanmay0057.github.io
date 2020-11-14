@@ -1,0 +1,90 @@
+<div class="row">
+    <div class="col-xs-12 col-md-6 col-md-offset-3">
+      <form #postForm="ngForm" (ngSubmit)="onCreatePost(postForm.value)">
+        <div class="form-group">
+          <label for="name">Name</label>
+          <input
+            type="text"
+            class="form-control"
+            id="name"
+            required
+            ngModel
+            name="name"
+          />
+        </div>
+        <div class="form-group">
+          <label for="description">Description</label>
+          <textarea
+            class="form-control"
+            id="description"
+            required
+            ngModel
+            name="description"
+          ></textarea>
+        </div>
+
+        <div class="form-group">
+          <label for="price">Price</label>
+          <input
+            type="number"
+            class="form-control"
+            id="price"
+            required
+            ngModel
+            name="price"
+          />
+        </div>
+
+        <!--<div class="form-group">
+            <input type="file" #fileInput (change)="onFileSelect(fileInput)"/>
+        </div>-->
+
+        <button
+          class="btn btn-primary"
+          type="submit"
+          [disabled]="!postForm.valid"
+        >
+          Upload!
+        </button>
+      </form>
+    </div>
+  </div>
+  <hr />
+  
+  <div class="row">
+    <div class="col-xs-12 col-md-6 col-md-offset-3">
+      <p *ngIf = "loadedPosts.length < 1 && !isFetching">No posts available!</p>
+      <ul class="list-group" *ngIf = "loadedPosts.length >= 1 && !isFetching">
+          <a [routerLink] = "['info']" class="list-group-item clearfix" *ngFor = "let post of loadedPosts" style="cursor: pointer;" (click)="onClickItem(post)">
+              <div class="pull-left">
+                  <h3 class="list-group-item-heading" style="max-width: 200px;">{{ post.name }}</h3><br>
+                  <h4 class="list-group-item-text" >{{ post.description }}</h4>
+              </div>
+
+              <span class="pull-right">
+                  <div class="col-xs-12">
+                      <div class="col-xs-7" *ngIf="post.imagePath; else tempd" >
+                        <img [src]="post.imagePath" class="img-responsive" style="max-height: 100px; max-width: 100px;">                     
+                      </div>
+                      
+                        <ng-template #tempd>
+                          <div class="col-xs-7">
+                            <img src="https://tutaki.org.nz/wp-content/uploads/2019/04/no-image-1.png" class="img-responsive" style="max-height: 100px; max-width: 100px;">
+                          </div>
+                          </ng-template>
+                                      
+                      <div class="col-xs-5 pull-center">
+                        <p style="font-weight: bold;">Rs.{{ post.price }}</p>
+                        <button class="btn btn-danger" (click)="removeItem(post.id)">
+                            Remove
+                        </button>
+                      </div>
+                  </div>             
+              </span>             
+          </a>
+      </ul>
+      <P *ngIf = "isFetching">
+          Loading.....
+      </P>
+    </div>
+  </div>
