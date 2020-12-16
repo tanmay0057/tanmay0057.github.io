@@ -1,7 +1,8 @@
 import { EventEmitter, Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Post } from './post.model';
 import { map } from 'rxjs/operators';
+import { Subject } from 'rxjs';
 
 @Injectable({
     providedIn: 'root'
@@ -11,6 +12,8 @@ export class PostsService{
     emitPost = new EventEmitter<Post[]>();
     //itemSelected: boolean = false;
     tempData = [];
+
+    //removeBtnClicked = new Subject<boolean>();
 
     constructor(private http: HttpClient) {
     }

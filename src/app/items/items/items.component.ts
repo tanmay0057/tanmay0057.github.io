@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Post } from 'src/app/post.model'
 import { PostsService } from 'src/app/posts.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-items',
@@ -14,7 +15,9 @@ export class ItemsComponent implements OnInit {
   isFetching = false;
   id: number;
 
-  constructor(private http: HttpClient, private postsService: PostsService) { }
+  removeBtnClicked: boolean = false;
+
+  constructor(private http: HttpClient, private postsService: PostsService, private router: Router) { }
 
   ngOnInit(): void {
     this.isFetching = true;
@@ -40,15 +43,22 @@ export class ItemsComponent implements OnInit {
   }
 
   removeItem(id: string){
+    
+    this.removeBtnClicked = true;
+
     this.http.delete('https://shop-bridge-a260a.firebaseio.com/posts/' + id + '.json').subscribe(() => {
       //this.loadedPosts = [];
       alert('Successful');
+      this.removeBtnClicked = false;
       this.onFetchPosts();
     });
   }
 
   onClickItem(data){
-    this.postsService.tempData = data;
+    if(!this.removeBtnClicked){
+      this.postsService.tempData = data;
+      this.router.navigate(['/info']);
+    }
   }
 
 }

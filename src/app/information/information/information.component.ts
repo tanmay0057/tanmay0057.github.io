@@ -1,4 +1,4 @@
-import { AfterViewInit, Component, DoCheck, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { PostsService } from 'src/app/posts.service';
 
 @Component({
